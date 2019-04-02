@@ -1,7 +1,9 @@
 var dotenv = require("dotenv").config();
 var keys = require("./keys.js");
 var axios = require("axios");
-const moment = require('moment');
+var moment = require('moment');
+var chalk = require('chalk');
+
 
 // var spotify = new Spotify(keys.spotify);
 var command = process.argv[2];
@@ -12,8 +14,11 @@ var request = process.argv.slice(3).join("+");
 
 // Search for concerts using Axios and Bands in Town API
 if (command === 'concert-this') {
-    console.log(request);
-    bandInTownSearch();
+    if (request === "") {
+        console.log(chalk.red('Enter artist/band name'));
+    } else {
+        bandInTownSearch();
+    }
 }
 
 // Search for the movie information using Axios and OMDB API
@@ -35,7 +40,6 @@ function omdbSearch(request) {
             console.log("Country where the movie was produced: " + response.data.Country);//+
             console.log("Language of the movie: " + response.data.Language);//+
             console.log("Plot of the movie: " + response.data.Plot);//+
-            // console.log("\r\n");
             console.log("Actors in the movie: " + response.data.Actors);//+
         }
     );
@@ -44,12 +48,15 @@ function omdbSearch(request) {
 function bandInTownSearch() {
     axios.get("https://rest.bandsintown.com/artists/" + request + "/events?app_id=codingbootcamp").then(
         function (response) {
+            console.log("\r\n");
+            console.log(chalk.inverse.bold('Upcoming ' + response.data[0].lineup[0] + ' concerts:'));
             for (i = 0; i < response.data.length; i++) {
                 console.log("Name of the venue: " + response.data[i].venue.name);
                 console.log("Venue location: " + response.data[i].venue.country + " " +
                     response.data[i].venue.region + " " + response.data[i].venue.city);
-                const date = moment(response.data[i].datetime).format("MM-DD-YYYY");
+                var date = moment(response.data[i].datetime).format("MM-DD-YYYY");
                 console.log("Date of the Event: " + date);
+                console.log("\r\n");
             }
         }
     )
