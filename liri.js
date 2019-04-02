@@ -35,7 +35,7 @@ if (command === 'concert-this') {
                 spotifySearch(request);
             }
         } else {
-            console.log(chalk.inverse.cyan("To use LIRI type one of the commands:"));
+            console.log(chalk.inverse.cyan("To use LIRI type one of these commands:"));
             console.log(chalk.inverse.cyan("\r 'concert-this' <artist/band name>"));
             console.log(chalk.inverse.cyan("\r 'spotify-this-song' <song (and artist) name>"));
             console.log(chalk.inverse.cyan("\r 'movie-this' <movie name>"));
@@ -79,7 +79,15 @@ function spotifySearch(request) {
             return console.log('Error occurred: ' + err);
         }
         console.log("Artist(band): " + response.tracks.items[0].artists[0].name);
-        console.log("Song: " + response.tracks.items[0].name);
+        for (i = 0; response.tracks.items.length; i++) {
+            if (response.tracks.items[i].name === process.argv.slice(3)) {
+                console.log("Song: " + response.tracks.items[i].name);
+                break;
+            } else {
+                console.log("Song: " + response.tracks.items[0].name);
+                break;
+            }
+        }
         console.log("Album: " + response.tracks.items[0].album.name);
         console.log("Preview on Spotify: " + response.tracks.items[0].preview_url);
     });
