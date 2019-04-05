@@ -13,7 +13,7 @@ LIRI uses these commands to retrieve data from APIs:
 * Date of the Event (use moment to format this as "MM/DD/YYYY")
 
 ![Liri-concerts](/assets/images/liri-concerts.PNG)
-*Example of using concerts search command*
+<p align="center">*Example of using concerts search command*</p>
 
  2. 'spotify-this-song' <song (and artist) name>
  3. 'movie-this' <movie name>
