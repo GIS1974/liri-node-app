@@ -1,7 +1,7 @@
 # L.I.R.I
 
 ## Overview
-LIRI stans for Interpretation and Recognition Interface. LIRI is a command line node app that takes in parameters and gives you back data.
+LIRI stands for Interpretation and Recognition Interface. LIRI is a command line node app that takes in parameters and gives you back data.
 LIRI searches for songs using Spotify API, for concerts using Bands in Town API and for movies using OMDB API.
 It uses the following NPM packages: axios, chalk, dotenv, moment and node-spotify-api.
 
@@ -44,10 +44,3 @@ LIRI uses these commands to retrieve data from APIs:
 
 If no command provided user sees the following message:
  ![Liri-1](/assets/images/liri-1.PNG)
-
-
-
-
-
-
-
